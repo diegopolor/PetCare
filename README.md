@@ -1,90 +1,103 @@
-# 🐾 PetCare — Plataforma Web de Servicios para Mascotas
+# PetCare — Maquetación y Prototipado Interactivo de la Plataforma Web
 
-> Aplicación web frontend nativa, moderna y responsive para la exploración, reserva y gestión de servicios especializados para mascotas (veterinarias, peluquerías, paseos y guarderías).
-
----
-
-## 📋 Descripción del Proyecto
-
-**PetCare** es una solución web desarrollada con tecnologías nativas del estándar web (**HTML5**, **CSS3 puro** y **JavaScript vanilla**). Conecta de manera fluida y transparente a **propietarios de mascotas** con **proveedores de servicios verificados** en Bogotá, eliminando la fricción de coordinar turnos a través de múltiples canales dispersos.
-
-La arquitectura del proyecto está completamente modularizada por responsabilidades y agrupada por páginas, garantizando **cero estilos en línea (`style="..."`)** y total independencia de frameworks o librerías externas (sin Tailwind CSS, Bootstrap ni dependencias de empaquetado).
+> Fase de Maquetación del Taller de Análisis y Diseño de Sistemas. Prototipo navegable del Producto Mínimo Viable (MVP) desarrollado con tecnologías nativas (HTML5, CSS3 puro y JavaScript vanilla) para validar la estructura visual y la experiencia de navegación a partir del diseño en Figma.
 
 ---
 
-## ✨ Módulos y Funcionalidades
+## 1. Contexto y Alcance del Proyecto
 
-### 1. 🏠 Exploración y Búsqueda de Servicios (`pages/home/`)
-- **Buscador interactivo multidimensional:** Filtros combinados por tipo de servicio (peluquería, veterinaria, paseo, guardería), zona/localidad y tarifa máxima.
-- **Accesos directos por categoría:** Barra horizontal de filtrado rápido con conteo de resultados en tiempo real.
-- **Tarjetas de proveedores verificados:** Información esencial de cada establecimiento (tarifa base en COP, calificación promedio, dirección y descripción).
-- **Estado vacío asistido:** Vista guiada para restablecer criterios cuando una búsqueda no arroja resultados en una zona específica.
-- **Modal de perfil detallado:** Desglose transparente de servicios con precios y duraciones, horarios de atención, garantía de opiniones verificadas y botón directo de reserva.
+Este repositorio corresponde a la **fase de maquetación inicial** del proyecto tecnológico **PetCare**, desarrollado en el marco del Taller de Diseño y Validación de Prototipos de Software.
 
-### 2. 🔐 Autenticación y Recuperación (`pages/login/`)
-- **Conmutador de roles interactivo:** Selección entre perfil *Propietario* y *Proveedor*, adaptando los datos de prueba y la redirección post-inicio de sesión.
-- **Control de visibilidad de contraseña:** Alternancia dinámica entre texto plano y oculto.
-- **Recuperación de acceso:** Sub-vista integrada para solicitar restablecimiento seguro de clave por correo electrónico.
-
-### 3. ✨ Registro Dinámico de Usuarios (`pages/register/`)
-- **Selector de tipo de cuenta:** Interfaz adaptativa que despliega campos exclusivos de negocio (categoría comercial, dirección de sede/cobertura) al elegir perfil *Proveedor*.
-- **Medidor dinámico de robustez de contraseña:** Validación en vivo según longitud, presencia de mayúsculas y números con indicador visual de estado (débil, medio, óptimo).
-- **Tratamiento de datos:** Aceptación explícita de términos y políticas de tratamiento de datos.
-
-### 4. 🐶 Mis Mascotas y Perfil de Cuenta (`pages/info/`)
-- **Fichas comportamentales de mascotas:** Registro detallado de especie, raza, tamaño y observaciones especiales (alergias, rutinas o temperamento frente a secadores/consultas).
-- **Formulario interactivo:** Modal desplegable para dar de alta nuevas mascotas y agregarlas instantáneamente al listado.
-- **Perfil verificado:** Visualización de datos de contacto y configuración de notificaciones automáticas.
-
-### 5. 📊 Reservas y Panel de Control (`pages/bookings/`)
-- **Asistente de reserva en 3 pasos:**
-  1. Selección guiada de proveedor y servicio específico.
-  2. Elección de fecha en calendario y franja horaria disponible en bloques interactivos.
-  3. Selección de la mascota registrada e ingreso de notas personalizadas para la cita.
-- **Tarjeta de resumen en tiempo real:** Cálculo reactivo del valor estimado del servicio, proveedor seleccionado, horario y mascota antes de confirmar.
-- **Historial "Mis Reservas":** Consulta de citas activas, estados en vivo (*Pendiente*, *Confirmada*, *Completada*, *Cancelada*) y acción de cancelación directa.
-- **Panel operativo del proveedor:** Indicadores clave de rendimiento (KPIs: reservas totales, turnos pendientes e ingresos estimados), tabla interactiva para confirmar solicitudes y gestor de disponibilidad horaria por turnos.
+El diseño y desarrollo mantienen coherencia con los requisitos funcionales, historias de usuario y el alcance del MVP estructurado en la Actividad 1.
 
 ---
 
-## 🛠️ Tecnologías Utilizadas
+## 2. Relación con los Entregables del Taller
 
-- **HTML5:** Marcado semántico (`<header>`, `<main>`, `<section>`, `<article>`, `<footer>`, etc.).
+El proyecto complementa el documento en formato PDF requerido para la sustentación del prototipo, integrando los siguientes aspectos:
+
+- **Guía de Estilos Visual (UIKit de Figma):** Implementación fiel de la paleta cromática (tonos Brand Teal y acentos Coral), escala tipográfica (Plus Jakarta Sans), radios de borde, sombras y estados de interacción (hover, focus, active, disabled) en botones y campos de formulario.
+- **Wireframes y Estructura Visual:** Distribución del contenido organizada mediante Flexbox y CSS Grid, respetando los wireframes de baja y alta fidelidad.
+- **Prototipo Interactivo Navegable:** Navegación fluida entre pantallas para validar los User Flows y el Customer Journey Map de propietarios y proveedores.
+- **Módulos Principales Maquetados:**
+  1. **Login:** Inicio de sesión con selector de perfiles y recuperación de acceso.
+  2. **Registro:** Creación de cuenta adaptativa según tipo de usuario (propietario o proveedor) con validación visual de contraseña.
+  3. **Panel Principal:** Catálogo de proveedores, buscador con filtros combinados, visualización de tarifas y modal de detalle.
+  4. **Gestión de Información:** Administración del perfil de cuenta y fichas de mascotas con notas comportamentales.
+  5. **Reportes y Funcionalidades Clave:** Asistente guiado de agendamiento de citas en 3 pasos, historial de reservas y panel de control operativo del proveedor con indicadores y disponibilidad.
+- **Validación y Pruebas de Usabilidad:** El prototipo sirve como base para evaluar la experiencia de uso con perfiles reales (dueños de mascotas y negocios del sector veterinario y de cuidado), incorporando mejoras sobre la claridad de las tarifas y la simplicidad de la reserva.
+
+---
+
+## 3. Módulos Desarrollados en el Prototipo
+
+### 3.1. Panel Principal y Exploración (`pages/home/`)
+- Buscador con filtros por categoría de servicio, ubicación y tarifa máxima.
+- Accesos rápidos por categoría con conteo dinámico de resultados.
+- Tarjetas de proveedores verificados con información de contacto, precios base y opiniones.
+- Estado vacío asistido cuando un filtro no presenta coincidencias.
+- Modal de perfil detallado con listado de tarifas desglosadas y horarios de atención.
+
+### 3.2. Inicio de Sesión y Recuperación (`pages/login/`)
+- Selector de rol (Propietario vs. Proveedor) para simular la experiencia de acceso diferenciada.
+- Alternancia de visibilidad de contraseñas (mostrar/ocultar).
+- Sub-vista integrada para solicitud de recuperación de contraseña por correo.
+
+### 3.3. Registro de Usuarios (`pages/register/`)
+- Formulario adaptativo que despliega campos comerciales (categoría de negocio, sede y cobertura) cuando se selecciona perfil proveedor.
+- Medidor en tiempo real de la seguridad de la contraseña (longitud, mayúsculas y números).
+- Casilla de confirmación de términos de uso y tratamiento de datos.
+
+### 3.4. Mis Mascotas y Perfil (`pages/info/`)
+- Fichas individuales con especie, raza, peso y notas de comportamiento o cuidados especiales.
+- Formulario interactivo para registrar nuevas mascotas y sumarlas al perfil.
+- Vista de datos del titular y estado de cuenta.
+
+### 3.5. Reservas y Panel del Proveedor (`pages/bookings/`)
+- Asistente de agendamiento en 3 pasos: selección de proveedor/servicio, fecha y franja horaria disponible, y selección de mascota con observaciones.
+- Tarjeta de resumen reactiva que calcula en vivo el valor total y los detalles de la cita.
+- Pestaña de historial de citas para el propietario con opción de cancelación.
+- Pestaña de panel para el proveedor con indicadores clave (reservas totales, pendientes, ingresos estimados), tabla interactiva de turnos y gestor de disponibilidad horaria.
+
+---
+
+## 4. Tecnologías y Estándares de Maquetación
+
+- **HTML5:** Marcado semántico y accesible sin código innecesario.
 - **CSS3 Puro:**
-  - Sistema de diseño centralizado con variables personalizadas (`:root`).
-  - Maquetación moderna basada en **Flexbox** y **CSS Grid**.
-  - Diseño responsive asistido con media queries adaptativas.
-  - Cero dependencias de utilidades externas (sin Tailwind ni Bootstrap).
-- **JavaScript Vanilla (ES6+):**
-  - Manipulación nativa del DOM y eventos reactivos.
-  - Gestión de estado local en memoria sin librerías externas.
-  - Enrutamiento relativo entre páginas modulares.
+  - Sistema de diseño centralizado con variables globales (`:root`).
+  - Maquetación responsiva mediante CSS Grid y Flexbox.
+  - Ausencia de frameworks externos (sin dependencias de Tailwind CSS, Bootstrap ni procesadores obligatorios).
+- **JavaScript Vanilla (ES6+):** Lógica nativa de interacción, control de vistas modales, conmutadores y simulación del flujo de usuario.
+- **Cero Estilos en Línea:** Separación estricta de presentación; no se utiliza el atributo `style="..."` en ninguna etiqueta HTML ni template string.
 
 ---
 
-## 📁 Estructura del Proyecto
+## 5. Estructura de Archivos del Proyecto
+
+El proyecto utiliza una arquitectura modular por página, donde cada módulo agrupa su estructura (`.html`), estilos (`.css`) y lógica (`.js`):
 
 ```text
 petcare/
-├── index.html                                 # Enrutador inicial al Panel Principal
+├── index.html                                 # Enrutador de entrada al Panel Principal
 ├── README.md                                  # Documentación del proyecto
 ├── assets/
 │   ├── css/
-│   │   ├── global.css                         # Variables :root, reset, layout y componentes compartidos
-│   │   └── responsive.css                     # Reglas de adaptación y breakpoints
+│   │   ├── global.css                         # Variables :root, reset, layout, formularios y footer
+│   │   └── responsive.css                     # Media queries y breakpoints adaptativos
 │   ├── js/
 │   │   └── navigation.js                      # Utilidades de navegación
-│   └── images/                                # Recursos gráficos e iconos
+│   └── images/                                # Recursos gráficos
 └── pages/
     ├── home/                                  # Módulo: Panel Principal
     │   ├── home.html
     │   ├── home.css
     │   └── home.js
-    ├── login/                                 # Módulo: Autenticación
+    ├── login/                                 # Módulo: Inicio de Sesión
     │   ├── login.html
     │   ├── login.css
     │   └── login.js
-    ├── register/                              # Módulo: Registro
+    ├── register/                              # Módulo: Registro de Cuenta
     │   ├── register.html
     │   ├── register.css
     │   └── register.js
@@ -92,7 +105,7 @@ petcare/
     │   ├── info.html
     │   ├── info.css
     │   └── info.js
-    └── bookings/                              # Módulo: Reservas y Panel Proveedor
+    └── bookings/                              # Módulo: Reservas y Gestión
         ├── bookings.html
         ├── bookings.css
         └── bookings.js
@@ -100,37 +113,27 @@ petcare/
 
 ---
 
-## 🚀 Cómo Ejecutar el Proyecto
+## 6. Instrucciones de Ejecución
 
-El proyecto no requiere ningún proceso de construcción (`build`), compilación previa ni instalación de dependencias `npm`.
+Al ser un prototipo web estático nativo, no requiere compilación previa (`npm build`) ni instalación de paquetes.
 
-### Opción 1: Abrir directamente en el navegador
-1. Clona o descarga este repositorio.
-2. Abre el archivo `petcare/index.html` en tu navegador favorito (Chrome, Edge, Firefox, Safari).
+### Ejecución Directa
+Abra el archivo `petcare/index.html` en cualquier navegador web moderno (Google Chrome, Microsoft Edge, Mozilla Firefox o Apple Safari).
 
-### Opción 2: Usar un servidor local estático
+### Ejecución con Servidor Local Estático
 
-Con **Python 3**:
+**Python 3:**
 ```bash
 cd petcare
 python -m http.server 8000
 ```
-Luego abre `http://localhost:8000` en tu navegador.
+Acceda a `http://localhost:8000` en su navegador.
 
-Con **Node.js (serve o npx)**:
+**Node.js:**
 ```bash
 cd petcare
 npx serve .
 ```
 
-Con **VS Code / Cursor / Antigravity**:
-- Instala la extensión **Live Server** y haz clic derecho en `index.html` $\rightarrow$ *"Open with Live Server"*.
-
----
-
-## 📌 Principios de Calidad del Código
-
-1. **Separación de responsabilidades:** Cada página agrupa exclusivamente su vista (`.html`), estilos (`.css`) y lógica de interacción (`.js`).
-2. **Cero estilos en línea:** Ninguna etiqueta ni elemento inyectado mediante JavaScript hace uso del atributo `style="..."`.
-3. **Persistencia y navegación relativa:** Todos los enlaces y llamadas a recursos utilizan rutas relativas funcionales en cualquier entorno de despliegue local o servidor web.
-
+**Live Server (Visual Studio Code / Antigravity IDE):**
+Haga clic derecho sobre `petcare/index.html` y seleccione la opción *Open with Live Server*.
