@@ -1,0 +1,204 @@
+/* ==========================================================================
+   PetCare — Diseño Responsive y Adaptabilidad (CSS3 Puro)
+   Sin dependencias de frameworks CSS ni Tailwind CSS
+   100% libre de estilos en línea
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Simulador Móvil (Mobile-First Frame)
+   -------------------------------------------------------------------------- */
+.mobile-frame {
+  max-width: 412px;
+  margin: 1.5rem auto;
+  border: 10px solid var(--color-slate-800);
+  border-radius: 36px;
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+  overflow-x: hidden;
+  background: var(--color-slate-50);
+}
+
+.mobile-frame .main-header {
+  top: 0;
+}
+
+.mobile-frame .session-status {
+  display: none;
+}
+
+.mobile-frame .brand-slogan {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   Breakpoint: Pantallas Grandes y Laptops (<= 1024px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .session-status {
+    display: none;
+  }
+
+  /* Login */
+  .login-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .login-promo-card,
+  .login-form-container {
+    grid-column: span 12;
+  }
+
+  /* Mascotas y Perfil */
+  .info-layout-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .info-profile-col,
+  .info-pets-col {
+    grid-column: span 12;
+  }
+
+  /* Wizard de Reserva */
+  .booking-wizard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-form-col,
+  .booking-summary-col {
+    grid-column: span 12;
+  }
+
+  /* Panel de Proveedor */
+  .kpi-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .provider-panel-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .provider-requests-col,
+  .provider-schedule-col {
+    grid-column: span 12;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Breakpoint: Tablets y Dispositivos Medianos (<= 768px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .header-container {
+    padding: 0.75rem 1rem;
+  }
+
+  .brand-slogan {
+    display: none;
+  }
+
+  .modules-nav {
+    width: 100%;
+    order: 3;
+    margin-top: 0.25rem;
+  }
+
+  /* Hero Banner y Buscador */
+  .hero-banner {
+    padding: 1.5rem;
+  }
+
+  .hero-title {
+    font-size: 1.75rem;
+  }
+
+  .search-box-card {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .search-field-service,
+  .search-field-location,
+  .search-field-price,
+  .search-field-btn {
+    grid-column: span 12;
+    border-left: none;
+    padding-left: 0;
+  }
+
+  .search-field-location,
+  .search-field-price {
+    border-top: 1px solid var(--color-slate-200);
+    padding-top: 0.5rem;
+  }
+
+  .providers-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .register-types-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Breakpoint: Móviles (<= 640px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  .meta-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .meta-controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .main-content {
+    padding: 1rem 0.75rem;
+  }
+
+  .module-header-box {
+    padding: 0.875rem 1rem;
+  }
+
+  .login-form-container,
+  .register-card-container,
+  .modal-dialog {
+    padding: 1.5rem 1rem;
+  }
+
+  .role-selector-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .kpi-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .quick-categories-bar {
+    width: 100%;
+  }
+
+  .modal-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .modal-footer button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}

@@ -1,0 +1,497 @@
+/* ==========================================================================
+   PetCare — Panel Principal y Exploración de Servicios (Home)
+   Estilos específicos de búsqueda, proveedores y modal de detalle
+   ========================================================================== */
+
+/* Hero Banner y Buscador */
+.hero-banner {
+  background: linear-gradient(135deg, var(--color-brand-800), var(--color-brand-700) 50%, #0d9488);
+  border-radius: var(--radius-3xl);
+  padding: 2.5rem;
+  color: var(--color-white);
+  box-shadow: var(--shadow-lg);
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-content-wrapper {
+  max-width: 48rem;
+  position: relative;
+  z-index: 10;
+}
+
+.hero-tag {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(4px);
+  color: #ccfbf1;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 0.75rem;
+}
+
+.hero-title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.hero-desc {
+  color: var(--color-brand-100);
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+.search-box-card {
+  margin-top: 1.5rem;
+  background-color: var(--color-white);
+  padding: 0.75rem;
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-xl);
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 0.75rem;
+  color: var(--color-slate-800);
+}
+
+.search-field-service {
+  grid-column: span 4;
+}
+
+.search-field-location {
+  grid-column: span 4;
+  border-left: 1px solid var(--color-slate-200);
+  padding-left: 0.75rem;
+}
+
+.search-field-price {
+  grid-column: span 2;
+  border-left: 1px solid var(--color-slate-200);
+  padding-left: 0.75rem;
+}
+
+.search-field-btn {
+  grid-column: span 2;
+  display: flex;
+  align-items: center;
+}
+
+.search-label {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-slate-400);
+  padding: 0 0.5rem;
+}
+
+.search-select {
+  width: 100%;
+  padding: 0.375rem 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-family: inherit;
+  color: var(--color-slate-800);
+}
+
+.btn-search {
+  width: 100%;
+  height: 100%;
+  padding: 0.75rem;
+  background-color: var(--color-coral-500);
+  color: var(--color-white);
+  font-weight: 700;
+  font-size: 0.875rem;
+  border-radius: var(--radius-xl);
+  border: none;
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  font-family: inherit;
+  transition: background-color var(--transition-normal);
+}
+
+.btn-search:hover {
+  background-color: var(--color-coral-600);
+}
+
+/* Categorías Rápidas */
+.quick-categories-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+}
+
+.quick-categories-track {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: nowrap;
+}
+
+.quick-cat-btn {
+  padding: 0.5rem 0.875rem;
+  border-radius: var(--radius-xl);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-slate-200);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-slate-700);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  font-family: inherit;
+  white-space: nowrap;
+  transition: all var(--transition-normal);
+}
+
+.quick-cat-btn:hover {
+  border-color: var(--color-brand-500);
+}
+
+.results-counter {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-slate-500);
+  white-space: nowrap;
+}
+
+/* Tarjetas de Proveedor */
+.providers-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.provider-card {
+  background-color: var(--color-white);
+  border-radius: var(--radius-3xl);
+  border: 1px solid var(--color-slate-200);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  transition: box-shadow var(--transition-normal);
+}
+
+.provider-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.provider-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.badge-prov-category {
+  font-size: 0.75rem;
+  font-weight: 700;
+  background-color: var(--color-brand-50);
+  color: var(--color-brand-700);
+  border: 1px solid var(--color-brand-200);
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+}
+
+.badge-prov-rating {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--color-amber-600);
+  background-color: var(--color-amber-50);
+  padding: 0.25rem 0.625rem;
+  border-radius: var(--radius-full);
+}
+
+.provider-name {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-slate-900);
+}
+
+.provider-address {
+  font-size: 0.75rem;
+  color: var(--color-slate-500);
+  margin-top: 0.25rem;
+}
+
+.provider-verified-badge {
+  color: var(--color-emerald-600);
+  font-weight: 600;
+}
+
+.provider-desc {
+  font-size: 0.875rem;
+  color: var(--color-slate-600);
+  line-height: 1.6;
+  margin-top: 0.75rem;
+}
+
+.provider-card-footer {
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-slate-100);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.provider-price-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--color-slate-400);
+  display: block;
+}
+
+.provider-price-val {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--color-slate-900);
+}
+
+.provider-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Estado Vacío Asistido */
+.empty-state-card {
+  background-color: var(--color-white);
+  border-radius: var(--radius-3xl);
+  border: 1px solid var(--color-slate-200);
+  padding: 2.5rem;
+  text-align: center;
+  max-width: 32rem;
+  margin: 1.5rem auto;
+}
+
+.empty-state-icon {
+  width: 4rem;
+  height: 4rem;
+  border-radius: var(--radius-2xl);
+  background-color: var(--color-amber-50);
+  color: var(--color-amber-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  margin: 0 auto 1rem auto;
+}
+
+.empty-state-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-slate-900);
+}
+
+.empty-state-desc {
+  font-size: 0.875rem;
+  color: var(--color-slate-500);
+  margin: 0.5rem 0 1.5rem 0;
+}
+
+.empty-state-btn {
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+}
+
+/* Modal Detalle de Proveedor */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modal-dialog {
+  background-color: var(--color-white);
+  border-radius: var(--radius-3xl);
+  max-width: 48rem;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-2xl);
+  border: 1px solid var(--color-slate-200);
+  padding: 2rem;
+}
+
+.modal-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid var(--color-slate-200);
+  padding-bottom: 1rem;
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-slate-900);
+  margin-top: 0.5rem;
+}
+
+.modal-meta {
+  font-size: 0.75rem;
+  color: var(--color-slate-500);
+  margin-top: 0.125rem;
+}
+
+.btn-close-modal {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--radius-full);
+  background-color: var(--color-slate-100);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--color-slate-600);
+  transition: background-color var(--transition-normal);
+}
+
+.btn-close-modal:hover {
+  background-color: var(--color-slate-200);
+}
+
+.modal-body {
+  padding: 1.25rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.modal-desc {
+  font-size: 0.875rem;
+  color: var(--color-slate-600);
+  line-height: 1.6;
+}
+
+.modal-section-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-slate-400);
+  margin-bottom: 0.75rem;
+}
+
+.modal-service-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem;
+  border-radius: var(--radius-xl);
+  background: var(--color-white);
+  border: 1px solid var(--color-slate-200);
+  margin-bottom: 0.5rem;
+}
+
+.modal-service-name {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-slate-800);
+}
+
+.modal-service-duration {
+  font-size: 0.75rem;
+  color: var(--color-slate-500);
+}
+
+.modal-service-price {
+  font-size: 0.875rem;
+  font-weight: 800;
+  color: var(--color-brand-700);
+}
+
+.modal-hours-box {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  background-color: var(--color-slate-50);
+  padding: 1rem;
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--color-slate-200);
+}
+
+.modal-hours-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-slate-700);
+  margin-bottom: 0.25rem;
+}
+
+.modal-hours-text {
+  font-size: 0.75rem;
+  color: var(--color-slate-600);
+}
+
+.modal-review-card {
+  padding: 0.875rem;
+  border-radius: var(--radius-xl);
+  background-color: var(--color-slate-50);
+  border: 1px solid var(--color-slate-200);
+  font-size: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.modal-review-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+  color: var(--color-slate-800);
+  margin-bottom: 0.25rem;
+}
+
+.modal-review-rating {
+  color: var(--color-amber-500);
+}
+
+.modal-review-comment {
+  color: var(--color-slate-600);
+}
+
+.modal-footer {
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-slate-200);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.modal-book-cta {
+  padding: 0.75rem 1.5rem;
+}
+

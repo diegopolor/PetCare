@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PetCare — Panel Principal y Exploración de Servicios</title>
+
+  <!-- Tipografía Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Hojas de estilo nativas (CSS3 puro) -->
+  <link rel="stylesheet" href="../../assets/css/global.css" />
+  <link rel="stylesheet" href="../../assets/css/responsive.css" />
+  <link rel="stylesheet" href="home.css" />
+</head>
+<body>
+
+  <!-- CONTENEDOR ADAPTABLE -->
+  <div id="viewport-wrapper" class="viewport-wrapper">
+
+    <!-- HEADER PRINCIPAL DE PETCARE -->
+    <header class="main-header">
+      <div class="header-container">
+        <!-- Logo -->
+        <a href="home.html" class="brand-logo">
+          <div class="brand-logo-icon">🐾</div>
+          <div>
+            <div class="brand-title-group">
+              <span class="brand-logo-text">Pet<span>Care</span></span>
+              <span class="brand-tag">MVP</span>
+            </div>
+            <p class="brand-slogan">Cuidado confiable y reservas sin fricción</p>
+          </div>
+        </a>
+
+        <!-- Estado de Sesión Simulado -->
+        <div class="session-status">
+          <div class="session-user-info">
+            <div id="active-user-name" class="session-user-name">Laura Martínez</div>
+            <div id="active-user-role" class="session-user-role">Propietaria · Bogotá</div>
+          </div>
+          <div class="session-avatar">LM</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL: EXPLORACIÓN DE SERVICIOS -->
+    <main class="main-content">
+      <section id="mod-home" class="module-section fade-in">
+        <!-- Hero Banner con Buscador -->
+        <div class="hero-banner">
+          <div class="hero-content-wrapper">
+            <span class="hero-tag">
+              🐾 Servicios Verificados para Mascotas
+            </span>
+            <h1 class="hero-title">
+              Encuentra el mejor cuidado para tu mascota en un solo lugar
+            </h1>
+            <p class="hero-desc">
+              Compara veterinarias, peluquerías, paseadores y guarderías con precios claros, horarios actualizados y opiniones verificadas.
+            </p>
+          </div>
+
+          <!-- Caja de Búsqueda Interactiva -->
+          <div class="search-box-card">
+            <div class="search-field-service">
+              <label class="search-label" for="filter-category">Tipo de servicio</label>
+              <select id="filter-category" onchange="filterProviders()" class="search-select">
+                <option value="ALL">🌟 Todos los servicios</option>
+                <option value="Peluquería">✂️ Peluquería y Baño</option>
+                <option value="Veterinaria">🩺 Atención Veterinaria</option>
+                <option value="Paseo">🦮 Paseo Canino</option>
+                <option value="Guardería">🏡 Cuidado Temporal / Guardería</option>
+              </select>
+            </div>
+            <div class="search-field-location">
+              <label class="search-label" for="filter-location">Ubicación o localidad</label>
+              <select id="filter-location" onchange="filterProviders()" class="search-select">
+                <option value="ALL">📍 Todas las zonas (Bogotá)</option>
+                <option value="Chapinero">Chapinero</option>
+                <option value="Usaquén">Usaquén</option>
+                <option value="Teusaquillo">Teusaquillo</option>
+                <option value="ZonaSinResultados">Otras zonas (Sin cobertura actual)</option>
+              </select>
+            </div>
+            <div class="search-field-price">
+              <label class="search-label" for="filter-price">Precio máx.</label>
+              <select id="filter-price" onchange="filterProviders()" class="search-select">
+                <option value="999999">💲 Cualquier tarifa</option>
+                <option value="30000">Hasta $30.000</option>
+                <option value="40000">Hasta $40.000</option>
+              </select>
+            </div>
+            <div class="search-field-btn">
+              <button onclick="filterProviders()" class="btn-search">
+                <span>🔍</span> Buscar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accesos Rápidos por Categoría -->
+        <div class="quick-categories-bar">
+          <div class="quick-categories-track">
+            <button onclick="quickCategory('ALL')" class="quick-cat-btn">
+              Todos (4)
+            </button>
+            <button onclick="quickCategory('Peluquería')" class="quick-cat-btn">
+              ✂️ Peluquería y Baño
+            </button>
+            <button onclick="quickCategory('Veterinaria')" class="quick-cat-btn">
+              🩺 Veterinaria
+            </button>
+            <button onclick="quickCategory('Paseo')" class="quick-cat-btn">
+              🦮 Paseos
+            </button>
+            <button onclick="quickCategory('Guardería')" class="quick-cat-btn">
+              🏡 Cuidado Temporal
+            </button>
+          </div>
+          <span id="results-counter" class="results-counter">Mostrando 4 proveedores verificados</span>
+        </div>
+
+        <!-- Contenedor de Tarjetas de Proveedores -->
+        <div id="providers-grid" class="providers-grid"></div>
+
+        <!-- Estado Vacío Asistido -->
+        <div id="empty-results-state" class="hidden fade-in empty-state-card">
+          <div class="empty-state-icon">
+            🔎
+          </div>
+          <h3 class="empty-state-title">No encontramos servicios disponibles con estos criterios en tu zona</h3>
+          <p class="empty-state-desc">
+            Intenta ampliar la ubicación de búsqueda o restablecer los filtros de tarifa para ver los proveedores mejor calificados cerca de ti.
+          </p>
+          <button onclick="resetFilters()" class="btn-card-primary empty-state-btn">
+            Restablecer filtros y ver todos los proveedores
+          </button>
+        </div>
+
+        <!-- Modal: Perfil Detallado del Proveedor -->
+        <div id="provider-detail-modal" class="hidden modal-overlay">
+          <div class="modal-dialog fade-in">
+            <div class="modal-header-row">
+              <div>
+                <span id="modal-prov-category" class="badge-prov-category">Categoría</span>
+                <h3 id="modal-prov-name" class="modal-title">Nombre del Proveedor</h3>
+                <p id="modal-prov-meta" class="modal-meta">Ubicación y calificación</p>
+              </div>
+              <button onclick="closeProviderModal()" class="btn-close-modal">✕</button>
+            </div>
+
+            <div class="modal-body">
+              <p id="modal-prov-desc" class="modal-desc"></p>
+
+              <!-- Servicios y Tarifas Transparentes -->
+              <div>
+                <h4 class="modal-section-title">Servicios Ofrecidos y Tarifas</h4>
+                <div id="modal-prov-services"></div>
+              </div>
+
+              <!-- Horarios y Garantía -->
+              <div class="modal-hours-box">
+                <div>
+                  <div class="modal-hours-title">🕒 Horarios de Atención</div>
+                  <p id="modal-prov-hours" class="modal-hours-text"></p>
+                </div>
+                <div>
+                  <div class="modal-hours-title">🛡️ Reseñas Verificadas</div>
+                  <p class="modal-hours-text">Solo propietarios que completaron una reserva real en PetCare pueden calificar a este proveedor.</p>
+                </div>
+              </div>
+
+              <!-- Opiniones de otros clientes -->
+              <div>
+                <h4 class="modal-section-title">Opiniones de clientes recientes</h4>
+                <div id="modal-prov-reviews"></div>
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button onclick="closeProviderModal()" class="btn-card-outline">
+                Seguir explorando
+              </button>
+              <button id="modal-book-btn" class="btn-primary-coral modal-book-cta">
+                📅 Reservar servicio con este proveedor →
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER CONSISTENTE -->
+    <footer class="main-footer">
+      <div class="footer-container">
+        <div class="footer-brand-group">
+          <span>🐾 PetCare</span>
+          <span class="footer-separator">|</span>
+          <span class="footer-desc">Plataforma de servicios y bienestar para mascotas · Bogotá (2026)</span>
+        </div>
+        <div class="footer-links">
+          <a href="home.html">Explorar</a>
+          <a href="../info/info.html">Mis Mascotas</a>
+          <a href="../bookings/bookings.html">Reservas y Servicios</a>
+          <a href="../login/login.html">Iniciar Sesión</a>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Scripts nativos modulares -->
+  <script src="../../assets/js/navigation.js"></script>
+  <script src="home.js"></script>
+</body>
+</html>
+

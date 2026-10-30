@@ -1,0 +1,259 @@
+/* ==========================================================================
+   PetCare — Login y Recuperación de Contraseña
+   Estilos específicos del formulario de autenticación y conmutador de roles
+   ========================================================================== */
+
+.login-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.login-promo-card {
+  grid-column: span 5;
+  background: linear-gradient(135deg, var(--color-brand-800), var(--color-brand-700) 50%, #0f4c4a);
+  color: var(--color-white);
+  border-radius: var(--radius-3xl);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+}
+
+.promo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(4px);
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.promo-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  line-height: 1.25;
+  margin-bottom: 1rem;
+}
+
+.promo-desc {
+  color: var(--color-brand-100);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.testimonial-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-2xl);
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.testimonial-quote {
+  font-size: 0.75rem;
+  font-style: italic;
+  color: #f0fdfa;
+  margin-bottom: 0.75rem;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.testimonial-avatar {
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--radius-full);
+  background-color: var(--color-coral-500);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+
+.login-testimonial-author-name {
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.login-testimonial-author-sub {
+  font-size: 11px;
+  color: var(--color-brand-200);
+}
+
+.promo-footer {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--color-brand-100);
+}
+
+.login-form-container {
+  grid-column: span 7;
+  background-color: var(--color-white);
+  border-radius: var(--radius-3xl);
+  border: 1px solid var(--color-slate-200);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.form-main-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-slate-900);
+}
+
+.form-main-subtitle {
+  font-size: 0.875rem;
+  color: var(--color-slate-500);
+}
+
+.role-selector-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.role-btn {
+  padding: 0.875rem;
+  border-radius: var(--radius-2xl);
+  border: 2px solid var(--color-slate-200);
+  background-color: var(--color-white);
+  text-align: left;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: inherit;
+}
+
+.role-btn:hover {
+  border-color: var(--color-slate-300);
+}
+
+.role-btn.active {
+  border-color: var(--color-brand-600);
+  background-color: rgba(240, 253, 250, 0.7);
+}
+
+.role-icon {
+  font-size: 1.5rem;
+}
+
+.role-btn-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-slate-900);
+}
+
+.role-btn-sub {
+  font-size: 11px;
+  color: var(--color-slate-500);
+}
+
+.login-options-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  font-size: 0.75rem;
+}
+
+.btn-test-error {
+  color: var(--color-rose-600);
+  text-decoration: none;
+}
+
+.btn-back-login {
+  color: var(--color-slate-500);
+  text-decoration: none;
+  margin-bottom: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.recovery-key-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--radius-xl);
+  background-color: var(--color-amber-100);
+  color: var(--color-amber-700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.recovery-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-slate-900);
+  margin-bottom: 0.25rem;
+}
+
+.recovery-subtitle {
+  font-size: 0.875rem;
+  color: var(--color-slate-500);
+  margin-bottom: 1.5rem;
+}
+
+/* Adaptación responsive específica del módulo */
+@media (max-width: 900px) {
+  .login-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .login-promo-card,
+  .login-form-container {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .login-form-container {
+    padding: 1.5rem;
+  }
+
+  .role-selector-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .login-options-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+}
+

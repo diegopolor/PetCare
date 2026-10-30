@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PetCare — Inicio de Sesión y Recuperación de Acceso</title>
+
+  <!-- Tipografía Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Hojas de estilo nativas (CSS3 puro) -->
+  <link rel="stylesheet" href="../../assets/css/global.css" />
+  <link rel="stylesheet" href="../../assets/css/responsive.css" />
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+
+  <!-- CONTENEDOR ADAPTABLE -->
+  <div id="viewport-wrapper" class="viewport-wrapper">
+
+    <!-- HEADER PRINCIPAL DE PETCARE -->
+    <header class="main-header">
+      <div class="header-container">
+        <!-- Logo -->
+        <a href="../home/home.html" class="brand-logo">
+          <div class="brand-logo-icon">🐾</div>
+          <div>
+            <div class="brand-title-group">
+              <span class="brand-logo-text">Pet<span>Care</span></span>
+              <span class="brand-tag">MVP</span>
+            </div>
+            <p class="brand-slogan">Cuidado confiable y reservas sin fricción</p>
+          </div>
+        </a>
+
+        <!-- Estado de Sesión Simulado -->
+        <div class="session-status">
+          <div class="session-user-info">
+            <div id="active-user-name" class="session-user-name">Laura Martínez</div>
+            <div id="active-user-role" class="session-user-role">Propietaria · Bogotá</div>
+          </div>
+          <div class="session-avatar">LM</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL: INICIO DE SESIÓN Y RECUPERACIÓN -->
+    <main class="main-content">
+      <section id="mod-login" class="module-section fade-in">
+        <div class="module-header-box">
+          <div>
+            <span class="module-header-tag">Acceso a la Plataforma</span>
+            <h2 class="module-header-title">Inicio de Sesión</h2>
+          </div>
+          <span class="module-header-hint">Ingresa a tu cuenta para gestionar citas y servicios</span>
+        </div>
+
+        <div class="login-grid">
+          <!-- Columna Izquierda: Propuesta de Valor Visual -->
+          <div class="login-promo-card">
+            <div>
+              <div class="promo-badge">
+                <span>🛡️</span> Plataforma verificada para mascotas
+              </div>
+              <h3 class="promo-title">Bienvenido de nuevo a PetCare</h3>
+              <p class="promo-desc">
+                Accede a tus reservas confirmadas, consulta las fichas de cuidado de tus mascotas o administra la agenda de tu negocio sin depender de llamadas ni chats dispersos.
+              </p>
+
+              <!-- Tarjeta Testimonial -->
+              <div class="testimonial-card">
+                <p class="testimonial-quote">
+                  "Antes tardaba casi una hora buscando peluquerías en Instagram y esperando respuesta en WhatsApp. Ahora veo precios claros y agendo el baño de Luna en dos minutos."
+                </p>
+                <div class="testimonial-author">
+                  <div class="testimonial-avatar">LM</div>
+                  <div>
+                    <div class="login-testimonial-author-name">Laura Martínez (29 años)</div>
+                    <div class="login-testimonial-author-sub">Dueña de Luna (Golden Retriever)</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="promo-footer">
+              <span>✔ Reseñas 100% reales</span>
+              <span>✔ Horarios en vivo</span>
+              <span>✔ Soporte 24/7</span>
+            </div>
+          </div>
+
+          <!-- Columna Derecha: Formulario Dinámico de Login / Recuperación -->
+          <div class="login-form-container">
+            
+            <!-- Sub-vista: Formulario de Login -->
+            <div id="login-form-view">
+              <div class="form-header-row">
+                <div>
+                  <h3 class="form-main-title">Iniciar sesión</h3>
+                  <p class="form-main-subtitle">Selecciona tu perfil para adaptar tu panel de entrada</p>
+                </div>
+                <a href="../register/register.html" class="link-btn">
+                  ¿No tienes cuenta? Regístrate
+                </a>
+              </div>
+
+              <!-- Selector de Rol Interactivo -->
+              <div class="role-selector-grid">
+                <button type="button" id="login-role-owner" onclick="setLoginRole('owner')" class="role-btn active">
+                  <span class="role-icon">🐕</span>
+                  <div>
+                    <div class="role-btn-title">Propietario</div>
+                    <div class="role-btn-sub">Busco servicios para mi mascota</div>
+                  </div>
+                </button>
+                <button type="button" id="login-role-provider" onclick="setLoginRole('provider')" class="role-btn">
+                  <span class="role-icon">🏥</span>
+                  <div>
+                    <div class="role-btn-title">Proveedor</div>
+                    <div class="role-btn-sub">Administro mi negocio y agenda</div>
+                  </div>
+                </button>
+              </div>
+
+              <!-- Alerta de retroalimentación -->
+              <div id="login-feedback" class="hidden"></div>
+
+              <form onsubmit="handleLoginSubmit(event)">
+                <div class="form-group">
+                  <label class="form-label" for="login-email">Correo electrónico registrado</label>
+                  <input type="email" id="login-email" value="laura.martinez@petcare.co" required class="form-input" placeholder="ejemplo@correo.com" />
+                </div>
+
+                <div class="form-group">
+                  <div class="form-header-row">
+                    <label class="form-label form-label-inline" for="login-password">Contraseña</label>
+                    <button type="button" onclick="toggleRecoveryView(true)" class="link-btn">
+                      ¿Olvidaste tu contraseña?
+                    </button>
+                  </div>
+                  <div class="password-input-wrapper">
+                    <input type="password" id="login-password" value="PetCare2026" required class="form-input" placeholder="Ingresa tu contraseña" />
+                    <button type="button" onclick="togglePasswordVisibility('login-password', this)" class="btn-toggle-pass">Mostrar</button>
+                  </div>
+                </div>
+
+                <div class="login-options-row">
+                  <label class="checkbox-label">
+                    <input type="checkbox" checked class="form-checkbox" />
+                    Mantener mi sesión iniciada en este dispositivo
+                  </label>
+                </div>
+
+                <button type="submit" class="btn-primary-brand">
+                  <span>Ingresar a PetCare</span>
+                  <span>→</span>
+                </button>
+              </form>
+            </div>
+
+            <!-- Sub-vista: Recuperación de Contraseña -->
+            <div id="login-recovery-view" class="hidden fade-in">
+              <button onclick="toggleRecoveryView(false)" class="link-btn btn-back-login">
+                ← Volver al inicio de sesión
+              </button>
+              <div class="recovery-key-icon">
+                🔑
+              </div>
+              <h3 class="recovery-title">Recuperar contraseña</h3>
+              <p class="recovery-subtitle">
+                Ingresa el correo asociado a tu cuenta. Te enviaremos un enlace temporal seguro válido por 15 minutos para restablecer tu clave.
+              </p>
+              <form onsubmit="handleRecoverySubmit(event)">
+                <div class="form-group">
+                  <label class="form-label" for="recovery-email">Correo electrónico</label>
+                  <input type="email" id="recovery-email" value="laura.martinez@petcare.co" required class="form-input" />
+                </div>
+                <div id="recovery-feedback" class="hidden alert-box alert-success">
+                  ✔ Hemos enviado el enlace de recuperación a tu correo. Revisa tu bandeja de entrada.
+                </div>
+                <button type="submit" class="btn-secondary-dark">
+                  Enviar enlace de recuperación
+                </button>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER CONSISTENTE -->
+    <footer class="main-footer">
+      <div class="footer-container">
+        <div class="footer-brand-group">
+          <span>🐾 PetCare</span>
+          <span class="footer-separator">|</span>
+          <span class="footer-desc">Plataforma de servicios y bienestar para mascotas · Bogotá (2026)</span>
+        </div>
+        <div class="footer-links">
+          <a href="../home/home.html">Explorar</a>
+          <a href="../info/info.html">Mis Mascotas</a>
+          <a href="../bookings/bookings.html">Reservas y Servicios</a>
+          <a href="login.html">Iniciar Sesión</a>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Scripts nativos modulares -->
+  <script src="../../assets/js/navigation.js"></script>
+  <script src="login.js"></script>
+</body>
+</html>
+

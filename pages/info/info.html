@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PetCare — Gestión de Información y Mascotas</title>
+
+  <!-- Tipografía Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Hojas de estilo nativas (CSS3 puro) -->
+  <link rel="stylesheet" href="../../assets/css/global.css" />
+  <link rel="stylesheet" href="../../assets/css/responsive.css" />
+  <link rel="stylesheet" href="info.css" />
+</head>
+<body>
+
+  <!-- CONTENEDOR ADAPTABLE -->
+  <div id="viewport-wrapper" class="viewport-wrapper">
+
+    <!-- HEADER PRINCIPAL DE PETCARE -->
+    <header class="main-header">
+      <div class="header-container">
+        <!-- Logo -->
+        <a href="../home/home.html" class="brand-logo">
+          <div class="brand-logo-icon">🐾</div>
+          <div>
+            <div class="brand-title-group">
+              <span class="brand-logo-text">Pet<span>Care</span></span>
+              <span class="brand-tag">MVP</span>
+            </div>
+            <p class="brand-slogan">Cuidado confiable y reservas sin fricción</p>
+          </div>
+        </a>
+
+        <!-- Estado de Sesión Simulado -->
+        <div class="session-status">
+          <div class="session-user-info">
+            <div id="active-user-name" class="session-user-name">Laura Martínez</div>
+            <div id="active-user-role" class="session-user-role">Propietaria · Bogotá</div>
+          </div>
+          <div class="session-avatar">LM</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL: GESTIÓN DE INFORMACIÓN Y MASCOTAS -->
+    <main class="main-content">
+      <section id="mod-info" class="module-section fade-in">
+        <div class="module-header-box module-header-box-padded">
+          <div>
+            <span class="module-header-tag">Mi Cuenta</span>
+            <h2 class="module-header-title">Mis Mascotas y Perfil</h2>
+            <p class="module-header-desc">
+              Registra el tamaño, comportamiento y antecedentes de tus mascotas para que el proveedor las conozca antes de la cita.
+            </p>
+          </div>
+          <button onclick="toggleNewPetForm()" class="btn-card-primary btn-add-pet">
+            <span>＋</span> Registrar Nueva Mascota
+          </button>
+        </div>
+
+        <!-- Formulario Desplegable para Registrar Nueva Mascota -->
+        <div id="new-pet-form-box" class="hidden new-pet-form-box fade-in">
+          <div class="new-pet-header">
+            <h3 class="new-pet-title">Nueva Ficha de Mascota</h3>
+            <button onclick="toggleNewPetForm()" class="link-btn new-pet-cancel-btn">Cancelar ✕</button>
+          </div>
+          <form onsubmit="addNewPet(event)" class="new-pet-form">
+            <div>
+              <label class="form-label" for="pet-name">Nombre de la mascota</label>
+              <input type="text" id="pet-name" required placeholder="Ej. Toby" class="form-input form-input-sm" />
+            </div>
+            <div>
+              <label class="form-label" for="pet-breed">Especie y Raza</label>
+              <input type="text" id="pet-breed" required placeholder="Ej. Perro · Beagle" class="form-input form-input-sm" />
+            </div>
+            <div>
+              <label class="form-label" for="pet-size">Edad y Tamaño</label>
+              <select id="pet-size" class="form-select form-select-sm">
+                <option value="Pequeño (menos de 10 kg)">Pequeño (menos de 10 kg)</option>
+                <option value="Mediano (10 a 25 kg)">Mediano (10 a 25 kg)</option>
+                <option value="Grande (más de 25 kg)">Grande (más de 25 kg)</option>
+              </select>
+            </div>
+            <div class="new-pet-form-full">
+              <label class="form-label" for="pet-notes">Comportamiento, rutinas o antecedentes médicos</label>
+              <input type="text" id="pet-notes" required placeholder="Ej. Alérgico al pollo, sociable con otros perros, nerviosa al cortarle las uñas." class="form-input form-input-sm" />
+            </div>
+            <div>
+              <button type="submit" class="btn-primary-coral btn-submit-pet">
+                Guardar Mascota
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="info-layout-grid">
+          <!-- Datos de la Cuenta del Propietario -->
+          <div class="info-profile-col">
+            <div class="profile-card">
+              <div class="profile-user-header">
+                <div class="avatar-large">LM</div>
+                <div>
+                  <span class="badge-verified">Cuenta Verificada</span>
+                  <h3 class="profile-name">Laura Martínez</h3>
+                  <p class="profile-sub">Profesional independiente · 29 años</p>
+                </div>
+              </div>
+
+              <div class="profile-info-list">
+                <div class="profile-info-row">
+                  <span class="profile-label">Correo:</span>
+                  <span class="profile-val">laura.martinez@petcare.co</span>
+                </div>
+                <div class="profile-info-row">
+                  <span class="profile-label">Teléfono / WhatsApp:</span>
+                  <span class="profile-val">+57 315 842 9102</span>
+                </div>
+                <div class="profile-info-row">
+                  <span class="profile-label">Ubicación predeterminada:</span>
+                  <span class="profile-val">Chapinero, Bogotá</span>
+                </div>
+                <div class="profile-info-row">
+                  <span class="profile-label">Notificaciones por email:</span>
+                  <span class="profile-val-active">Activas (24h antes)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Listado Dinámico de Mascotas Registradas -->
+          <div class="info-pets-col">
+            <div id="pets-list-container" class="pets-grid"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER CONSISTENTE -->
+    <footer class="main-footer">
+      <div class="footer-container">
+        <div class="footer-brand-group">
+          <span>🐾 PetCare</span>
+          <span class="footer-separator">|</span>
+          <span class="footer-desc">Plataforma de servicios y bienestar para mascotas · Bogotá (2026)</span>
+        </div>
+        <div class="footer-links">
+          <a href="../home/home.html">Explorar</a>
+          <a href="info.html">Mis Mascotas</a>
+          <a href="../bookings/bookings.html">Reservas y Servicios</a>
+          <a href="../login/login.html">Iniciar Sesión</a>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Scripts nativos modulares -->
+  <script src="../../assets/js/navigation.js"></script>
+  <script src="info.js"></script>
+</body>
+</html>
+

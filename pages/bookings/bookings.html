@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PetCare — Motor de Reservas y Reportes Operativos</title>
+
+  <!-- Tipografía Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Hojas de estilo nativas (CSS3 puro) -->
+  <link rel="stylesheet" href="../../assets/css/global.css" />
+  <link rel="stylesheet" href="../../assets/css/responsive.css" />
+  <link rel="stylesheet" href="bookings.css" />
+</head>
+<body>
+
+  <!-- CONTENEDOR ADAPTABLE -->
+  <div id="viewport-wrapper" class="viewport-wrapper">
+
+    <!-- HEADER PRINCIPAL DE PETCARE -->
+    <header class="main-header">
+      <div class="header-container">
+        <!-- Logo -->
+        <a href="../home/home.html" class="brand-logo">
+          <div class="brand-logo-icon">🐾</div>
+          <div>
+            <div class="brand-title-group">
+              <span class="brand-logo-text">Pet<span>Care</span></span>
+              <span class="brand-tag">MVP</span>
+            </div>
+            <p class="brand-slogan">Cuidado confiable y reservas sin fricción</p>
+          </div>
+        </a>
+
+        <!-- Estado de Sesión Simulado -->
+        <div class="session-status">
+          <div class="session-user-info">
+            <div id="active-user-name" class="session-user-name">Laura Martínez</div>
+            <div id="active-user-role" class="session-user-role">Propietaria · Bogotá</div>
+          </div>
+          <div class="session-avatar">LM</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL: RESERVAS Y REPORTES -->
+    <main class="main-content">
+      <section id="mod-reports" class="module-section fade-in">
+        <!-- Selector interno entre las 3 vistas -->
+        <div class="sub-nav-container">
+          <div>
+            <span class="module-header-tag">Servicios y Citas</span>
+            <h2 class="module-header-title">Reservas y Panel de Control</h2>
+          </div>
+          <div class="sub-nav-pills">
+            <button onclick="switchSubReport('sub-booking')" id="btn-sub-booking" class="btn-sub-report active">
+              1. Agendar Cita
+            </button>
+            <button onclick="switchSubReport('sub-mybookings')" id="btn-sub-mybookings" class="btn-sub-report">
+              2. Mis Reservas
+            </button>
+            <button onclick="switchSubReport('sub-provider')" id="btn-sub-provider" class="btn-sub-report">
+              3. Panel del Proveedor
+            </button>
+          </div>
+        </div>
+
+        <div class="sub-reports-wrapper">
+          <!-- SUB-VISTA 1: MOTOR DE RESERVA -->
+          <div id="sub-booking" class="sub-report-view booking-wizard-grid fade-in">
+            <div class="booking-form-col">
+              <div class="booking-form-header">
+                <div>
+                  <span class="booking-step-badge">Asistente guiado en 3 pasos</span>
+                  <h3 class="booking-form-title">Configura la reserva para tu mascota</h3>
+                </div>
+                <span class="booking-calendar-icon">📅</span>
+              </div>
+
+              <!-- Paso 1: Proveedor y Servicio -->
+              <div class="form-grid-2 form-grid-2-compact">
+                <div>
+                  <label class="form-label" for="book-provider">1. Proveedor seleccionado</label>
+                  <select id="book-provider" onchange="updateBookingProvider()" class="form-select booking-select-weight">
+                    <option value="0">Spa Canino & Grooming Huellitas (Chapinero)</option>
+                    <option value="1">Clínica Veterinaria San Francisco (Usaquén)</option>
+                    <option value="2">Rutas & Paseos Seguros Jorge A. (Teusaquillo)</option>
+                    <option value="3">Hogar Canino Campestre Mi Manada (Suba)</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="form-label" for="book-service">2. Servicio específico</label>
+                  <select id="book-service" onchange="updateBookingSummary()" class="form-select booking-select-weight"></select>
+                </div>
+              </div>
+
+              <!-- Paso 2: Fecha y Bloques de Hora -->
+              <div>
+                <label class="form-label" for="book-date">3. Selecciona fecha y horario disponible</label>
+                <div class="booking-date-row">
+                  <input type="date" id="book-date" value="2026-10-24" onchange="updateBookingSummary()" class="form-input booking-date-input" />
+                  <div class="booking-date-hint">
+                    🟢 Los bloques activos tienen confirmación inmediata con el proveedor.
+                  </div>
+                </div>
+                <div id="time-slots-container" class="time-slots-container">
+                  <button type="button" onclick="selectTimeSlot('09:00 AM', this)" class="time-slot">09:00 AM</button>
+                  <button type="button" onclick="selectTimeSlot('10:30 AM', this)" class="time-slot active">10:30 AM ✓</button>
+                  <button type="button" disabled class="time-slot disabled">12:00 PM (Ocupado)</button>
+                  <button type="button" onclick="selectTimeSlot('02:30 PM', this)" class="time-slot">02:30 PM</button>
+                  <button type="button" onclick="selectTimeSlot('04:00 PM', this)" class="time-slot">04:00 PM</button>
+                </div>
+              </div>
+
+              <!-- Paso 3: Mascota y Notas -->
+              <div class="form-grid-2 form-grid-2-compact">
+                <div>
+                  <label class="form-label" for="book-pet">4. Mascota que recibirá el servicio</label>
+                  <select id="book-pet" onchange="updateBookingSummary()" class="form-select booking-select-weight"></select>
+                </div>
+                <div>
+                  <label class="form-label" for="book-note">5. Indicación especial para esta cita</label>
+                  <input type="text" id="book-note" value="Recordar usar secador en velocidad baja." oninput="updateBookingSummary()" class="form-input" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Tarjeta de Resumen en Vivo -->
+            <div class="booking-summary-col">
+              <div class="booking-summary-card">
+                <div>
+                  <div class="booking-summary-header">
+                    <span class="booking-summary-tag">Resumen de tu reserva</span>
+                    <span class="booking-summary-badge">Cupo Disponible</span>
+                  </div>
+
+                  <div class="booking-summary-details">
+                    <div class="summary-row">
+                      <span class="summary-label">Proveedor:</span>
+                      <span id="sum-provider" class="summary-val">Spa Canino Huellitas</span>
+                    </div>
+                    <div class="summary-row">
+                      <span class="summary-label">Servicio:</span>
+                      <span id="sum-service" class="summary-val">Baño Hipoalergénico + Corte</span>
+                    </div>
+                    <div class="summary-row">
+                      <span class="summary-label">Fecha y Hora:</span>
+                      <span id="sum-datetime" class="summary-val-highlight">2026-10-24 · 10:30 AM</span>
+                    </div>
+                    <div class="summary-row">
+                      <span class="summary-label">Mascota asociada:</span>
+                      <span id="sum-pet" class="summary-val">🐶 Luna (Golden Retriever)</span>
+                    </div>
+                    <div class="summary-note-row">
+                      <span class="summary-note-label">Nota adjunta para el proveedor:</span>
+                      <span id="sum-note" class="summary-note-text">"Recordar usar secador en velocidad baja."</span>
+                    </div>
+                    <div class="summary-price-row">
+                      <span class="summary-price-label">Valor estimado del servicio:</span>
+                      <span id="sum-price" class="summary-price-val">$35.000 COP</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="booking-summary-cta">
+                  <button onclick="confirmNewBooking()" class="btn-primary-coral btn-confirm-booking">
+                    <span>✔ Confirmar y Registrar Reserva</span>
+                  </button>
+                  <p class="booking-confirm-note">
+                    Recibirás confirmación inmediata y podrás gestionarla en "Mis Reservas".
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUB-VISTA 2: GESTIÓN DE MIS RESERVAS -->
+          <div id="sub-mybookings" class="sub-report-view hidden fade-in">
+            <div class="mybookings-card">
+              <div class="mybookings-header">
+                <div>
+                  <h3 class="mybookings-title">Historial y Gestión de Mis Reservas</h3>
+                  <p class="mybookings-subtitle">Consulta el estado de tus solicitudes o cancela con al menos 24 horas de anticipación.</p>
+                </div>
+                <button onclick="switchSubReport('sub-booking')" class="btn-card-outline btn-new-booking-shortcut">
+                  + Nueva Reserva
+                </button>
+              </div>
+              <div id="user-bookings-list"></div>
+            </div>
+          </div>
+
+          <!-- SUB-VISTA 3: PANEL DEL PROVEEDOR Y REPORTES OPERATIVOS -->
+          <div id="sub-provider" class="sub-report-view hidden fade-in sub-reports-wrapper">
+            <!-- Tarjetas de Reporte Operativo / KPIs -->
+            <div class="kpi-cards-grid">
+              <div class="kpi-card kpi-brand">
+                <span class="kpi-label">Solicitudes Totales</span>
+                <div id="kpi-total" class="kpi-val">3 Reservas</div>
+                <span class="kpi-note-emerald">Sincronizadas en tiempo real</span>
+              </div>
+              <div class="kpi-card kpi-amber">
+                <span class="kpi-label">Por Confirmar / Atender</span>
+                <div id="kpi-pending" class="kpi-val">1 Pendiente</div>
+                <span class="kpi-note-amber">Requiere revisión del proveedor</span>
+              </div>
+              <div class="kpi-card kpi-coral">
+                <span class="kpi-label">Ingresos Estimados</span>
+                <div id="kpi-revenue" class="kpi-val">$100.000 COP</div>
+                <span class="kpi-note-slate">Según reservas activas</span>
+              </div>
+              <div class="kpi-card kpi-emerald">
+                <span class="kpi-label">Calificación Promedio</span>
+                <div class="kpi-val">★ 4.9 / 5.0</div>
+                <span class="kpi-note-emerald">38 opiniones verificadas</span>
+              </div>
+            </div>
+
+            <div class="provider-panel-grid">
+              <!-- Tabla Interactiva de Solicitudes Recibidas -->
+              <div class="provider-requests-col">
+                <h3 class="provider-panel-title">Solicitudes de Reserva Recibidas</h3>
+                <p class="provider-panel-subtitle">Como proveedor puedes consultar la ficha de cada mascota antes de aprobar o reprogramar la cita.</p>
+                <div class="table-responsive">
+                  <table class="data-table">
+                    <thead>
+                      <tr>
+                        <th>Código / Fecha</th>
+                        <th>Mascota y Ficha Previa</th>
+                        <th>Servicio</th>
+                        <th>Estado</th>
+                        <th class="table-action-cell">Acción Proveedor</th>
+                      </tr>
+                    </thead>
+                    <tbody id="provider-requests-table"></tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Gestor de Horarios y Disponibilidad del Proveedor -->
+              <div class="provider-schedule-col">
+                <h3 class="provider-panel-title">Disponibilidad y Horarios</h3>
+                <p class="provider-panel-subtitle">Activa o bloquea franjas horarias para organizar la disponibilidad de tu negocio.</p>
+                <div class="schedule-list">
+                  <label class="schedule-item">
+                    <div>
+                      <div class="schedule-day">Lunes a Viernes (Mañana)</div>
+                      <div class="schedule-time">08:00 AM — 12:30 PM</div>
+                    </div>
+                    <input type="checkbox" checked class="schedule-checkbox" />
+                  </label>
+                  <label class="schedule-item">
+                    <div>
+                      <div class="schedule-day">Lunes a Viernes (Tarde)</div>
+                      <div class="schedule-time">02:00 PM — 06:00 PM</div>
+                    </div>
+                    <input type="checkbox" checked class="schedule-checkbox" />
+                  </label>
+                  <label class="schedule-item">
+                    <div>
+                      <div class="schedule-day">Sábados y Festivos</div>
+                      <div class="schedule-time">09:00 AM — 04:00 PM</div>
+                    </div>
+                    <input type="checkbox" checked class="schedule-checkbox" />
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER CONSISTENTE -->
+    <footer class="main-footer">
+      <div class="footer-container">
+        <div class="footer-brand-group">
+          <span>🐾 PetCare</span>
+          <span class="footer-separator">|</span>
+          <span class="footer-desc">Plataforma de servicios y bienestar para mascotas · Bogotá (2026)</span>
+        </div>
+        <div class="footer-links">
+          <a href="../home/home.html">Explorar</a>
+          <a href="../info/info.html">Mis Mascotas</a>
+          <a href="bookings.html">Reservas y Servicios</a>
+          <a href="../login/login.html">Iniciar Sesión</a>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Scripts nativos modulares -->
+  <script src="../../assets/js/navigation.js"></script>
+  <script src="bookings.js"></script>
+</body>
+</html>
+

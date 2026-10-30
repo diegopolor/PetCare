@@ -1,0 +1,221 @@
+/* ==========================================================================
+   PetCare — Registro de Usuarios
+   Estilos específicos de formulario de registro, selector de rol y medidor de seguridad
+   ========================================================================== */
+
+.register-card-container {
+  background-color: var(--color-white);
+  border-radius: var(--radius-3xl);
+  border: 1px solid var(--color-slate-200);
+  box-shadow: var(--shadow-sm);
+  padding: 2.5rem;
+  max-width: 56rem;
+  margin: 0 auto;
+}
+
+.register-intro {
+  text-align: center;
+  max-width: 36rem;
+  margin: 0 auto 2rem auto;
+}
+
+.pill-intro {
+  background-color: var(--color-brand-50);
+  color: var(--color-brand-700);
+  border: 1px solid var(--color-brand-200);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+}
+
+.register-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--color-slate-900);
+  margin-top: 0.5rem;
+}
+
+.register-subtitle {
+  font-size: 0.875rem;
+  color: var(--color-slate-500);
+  margin-top: 0.25rem;
+}
+
+.register-types-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.reg-type-card {
+  cursor: pointer;
+  padding: 1.25rem;
+  border-radius: var(--radius-2xl);
+  border: 2px solid var(--color-slate-200);
+  background-color: var(--color-white);
+  transition: all var(--transition-normal);
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.reg-type-card:hover {
+  border-color: var(--color-slate-300);
+}
+
+.reg-type-card.active {
+  border-color: var(--color-brand-600);
+  background-color: rgba(240, 253, 250, 0.6);
+}
+
+.reg-type-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--radius-2xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  background-color: var(--color-slate-100);
+  color: var(--color-slate-700);
+}
+
+.reg-type-card.active .reg-type-icon {
+  background-color: var(--color-brand-600);
+  color: var(--color-white);
+}
+
+.reg-type-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.reg-type-title {
+  font-weight: 800;
+  color: var(--color-slate-900);
+}
+
+.reg-type-desc {
+  font-size: 0.75rem;
+  color: var(--color-slate-600);
+  margin-top: 0.25rem;
+}
+
+.badge-active-pill {
+  font-size: 10px;
+  font-weight: 700;
+  background-color: var(--color-brand-600);
+  color: var(--color-white);
+  padding: 0.125rem 0.5rem;
+  border-radius: var(--radius-full);
+}
+
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.form-grid-2-compact {
+  margin-bottom: 0;
+}
+
+.provider-extra-fields {
+  background-color: var(--color-slate-50);
+  border: 1px solid var(--color-slate-200);
+  padding: 1rem;
+  border-radius: var(--radius-2xl);
+  margin-bottom: 1.25rem;
+}
+
+.btn-simulate-duplicate {
+  color: var(--color-rose-600);
+  text-decoration: none;
+}
+
+.pass-strength-bar-container {
+  height: 6px;
+  width: 100%;
+  background-color: var(--color-slate-200);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+
+.pass-strength-bar {
+  height: 100%;
+  transition: all 0.3s ease;
+}
+
+.strength-strong {
+  width: 100%;
+  background-color: var(--color-emerald-500);
+}
+
+.strength-medium {
+  width: 66%;
+  background-color: var(--color-amber-500);
+}
+
+.strength-weak {
+  width: 30%;
+  background-color: var(--color-rose-500);
+}
+
+.pass-strength-text {
+  font-size: 11px;
+  font-weight: 600;
+  margin-top: 0.25rem;
+}
+
+.pass-strength-text-strong {
+  color: var(--color-emerald-700);
+}
+
+.pass-strength-text-medium {
+  color: var(--color-amber-700);
+}
+
+.pass-strength-text-weak {
+  color: var(--color-rose-600);
+}
+
+.register-terms-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-slate-100);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Adaptación responsive del módulo */
+@media (max-width: 768px) {
+  .register-card-container {
+    padding: 1.5rem;
+  }
+
+  .register-types-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .register-terms-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .register-terms-row button {
+    width: 100%;
+  }
+}
+

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PetCare — Registro de Usuario y Proveedor</title>
+
+  <!-- Tipografía Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Hojas de estilo nativas (CSS3 puro) -->
+  <link rel="stylesheet" href="../../assets/css/global.css" />
+  <link rel="stylesheet" href="../../assets/css/responsive.css" />
+  <link rel="stylesheet" href="register.css" />
+</head>
+<body>
+
+  <!-- CONTENEDOR ADAPTABLE -->
+  <div id="viewport-wrapper" class="viewport-wrapper">
+
+    <!-- HEADER PRINCIPAL DE PETCARE -->
+    <header class="main-header">
+      <div class="header-container">
+        <!-- Logo -->
+        <a href="../home/home.html" class="brand-logo">
+          <div class="brand-logo-icon">🐾</div>
+          <div>
+            <div class="brand-title-group">
+              <span class="brand-logo-text">Pet<span>Care</span></span>
+              <span class="brand-tag">MVP</span>
+            </div>
+            <p class="brand-slogan">Cuidado confiable y reservas sin fricción</p>
+          </div>
+        </a>
+
+        <!-- Estado de Sesión Simulado -->
+        <div class="session-status">
+          <div class="session-user-info">
+            <div id="active-user-name" class="session-user-name">Laura Martínez</div>
+            <div id="active-user-role" class="session-user-role">Propietaria · Bogotá</div>
+          </div>
+          <div class="session-avatar">LM</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL: REGISTRO DE USUARIOS -->
+    <main class="main-content">
+      <section id="mod-register" class="module-section fade-in">
+        <div class="module-header-box">
+          <div>
+            <span class="module-header-tag">Registro de Usuarios</span>
+            <h2 class="module-header-title">Crear Cuenta en PetCare</h2>
+          </div>
+          <span class="module-header-hint">Selecciona tu perfil para personalizar tu experiencia</span>
+        </div>
+
+        <div class="register-card-container">
+          <div class="register-intro">
+            <span class="pill-intro">Creación de cuenta en 1 minuto</span>
+            <h3 class="register-title">Únete a la comunidad PetCare</h3>
+            <p class="register-subtitle">Elige cómo deseas usar la plataforma para configurar tu perfil inicial.</p>
+          </div>
+
+          <!-- Selector de Tipo de Cuenta en Registro -->
+          <div class="register-types-grid">
+            <div id="reg-card-owner" onclick="setRegisterType('owner')" class="reg-type-card active">
+              <div class="reg-type-icon">🐶</div>
+              <div>
+                <div class="reg-type-title-row">
+                  <h4 class="reg-type-title">Soy Propietario de Mascota</h4>
+                  <span class="badge-active-pill">Activo</span>
+                </div>
+                <p class="reg-type-desc">Quiero buscar veterinarias, peluquerías o paseadores, comparar precios y reservar citas en línea.</p>
+              </div>
+            </div>
+
+            <div id="reg-card-provider" onclick="setRegisterType('provider')" class="reg-type-card">
+              <div class="reg-type-icon">🏪</div>
+              <div>
+                <div class="reg-type-title-row">
+                  <h4 class="reg-type-title">Soy Proveedor de Servicios</h4>
+                </div>
+                <p class="reg-type-desc">Tengo una veterinaria, peluquería, guardería o servicio de paseo y quiero recibir reservas organizadas.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Alerta de estado de registro -->
+          <div id="register-feedback" class="hidden"></div>
+
+          <form onsubmit="handleRegisterSubmit(event)">
+            <div class="form-grid-2">
+              <div>
+                <label id="reg-name-label" class="form-label" for="reg-name">Nombre completo</label>
+                <input type="text" id="reg-name" required value="Laura Martínez" class="form-input" />
+              </div>
+              <div>
+                <label class="form-label" for="reg-location">Ciudad / Localidad principal</label>
+                <select id="reg-location" class="form-select">
+                  <option>Chapinero, Bogotá</option>
+                  <option>Usaquén, Bogotá</option>
+                  <option>Teusaquillo, Bogotá</option>
+                  <option>Suba, Bogotá</option>
+                  <option>Kennedy, Bogotá</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Campos extra dinámicos cuando elige "Proveedor" -->
+            <div id="reg-provider-fields" class="hidden provider-extra-fields fade-in">
+              <div class="form-grid-2 form-grid-2-compact">
+                <div>
+                  <label class="form-label">Categoría principal del negocio</label>
+                  <select class="form-select form-select-sm">
+                    <option>Clínica Veterinaria</option>
+                    <option>Peluquería y Baño Canino/Felino</option>
+                    <option>Paseador Profesional</option>
+                    <option>Guardería / Cuidado Temporal</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="form-label">Dirección de atención o cobertura</label>
+                  <input type="text" placeholder="Ej. Cra 13 # 54-20, Local 2" class="form-input form-input-sm" />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div>
+                <label class="form-label" for="reg-email">Correo electrónico</label>
+                <input type="email" id="reg-email" required placeholder="tu.correo@ejemplo.com" value="laura.nueva@petcare.co" class="form-input" />
+              </div>
+              <div>
+                <label class="form-label">Teléfono / WhatsApp de notificaciones</label>
+                <input type="tel" required value="315 842 9102" class="form-input" />
+              </div>
+            </div>
+
+            <!-- Contraseña con medidor dinámico de seguridad -->
+            <div class="form-grid-2">
+              <div>
+                <label class="form-label" for="reg-pass">Crear Contraseña</label>
+                <input type="password" id="reg-pass" oninput="checkPasswordStrength(this.value)" value="PetCare2026" required class="form-input" />
+                <div class="pass-strength-bar-container">
+                  <div id="pass-strength-bar" class="pass-strength-bar strength-strong"></div>
+                </div>
+                <p id="pass-strength-text" class="pass-strength-text pass-strength-text-strong">
+                  ✔ Seguridad óptima: 8+ caracteres, mayúscula y número
+                </p>
+              </div>
+              <div>
+                <label class="form-label" for="reg-pass-confirm">Confirmar Contraseña</label>
+                <input type="password" id="reg-pass-confirm" value="PetCare2026" required class="form-input" />
+              </div>
+            </div>
+
+            <div class="register-terms-row">
+              <label class="checkbox-label">
+                <input type="checkbox" required checked class="form-checkbox" />
+                Acepto los términos de uso y la política de tratamiento de datos de PetCare.
+              </label>
+              <button type="submit" class="btn-primary-coral">
+                Crear mi cuenta en PetCare →
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER CONSISTENTE -->
+    <footer class="main-footer">
+      <div class="footer-container">
+        <div class="footer-brand-group">
+          <span>🐾 PetCare</span>
+          <span class="footer-separator">|</span>
+          <span class="footer-desc">Plataforma de servicios y bienestar para mascotas · Bogotá (2026)</span>
+        </div>
+        <div class="footer-links">
+          <a href="../home/home.html">Explorar</a>
+          <a href="../info/info.html">Mis Mascotas</a>
+          <a href="../bookings/bookings.html">Reservas y Servicios</a>
+          <a href="../login/login.html">Iniciar Sesión</a>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Scripts nativos modulares -->
+  <script src="../../assets/js/navigation.js"></script>
+  <script src="register.js"></script>
+</body>
+</html>
+
